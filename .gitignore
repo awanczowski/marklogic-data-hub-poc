@@ -1,0 +1,3 @@
+data-hub/gradle-local.properties
+docker/marklogic/MarkLogic-9.0-9.1.x86_64.rpm
+docker/marklogic/MarkLogicConverters-9.0-9.1.x86_64.rpm
