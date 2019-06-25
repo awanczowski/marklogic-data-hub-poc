@@ -31,24 +31,24 @@ services:
     container_name: 'datahub.local'
     networks:
       - 'marklogic'
-    # Have you use a data bind mount instead of a namved volume due to an issue mounting windows volumes.   
     volumes:
       - './data-hub-config:/data-hub-config'
-  # grove:
-  #   build: 
-  #     context: 'search-ui'
-  #   depends_on:     
-  #     - marklogic
-  #   image: 'grove:latest'
-  #   ports:
-  #     - '3000:3000'
-  #     - '9003:9003'
-  #   hostname: 'grove.local'
-  #   container_name: 'grove.local'  
-  #   environment:
-  #     GROVE_ML_HOST: 'marklogic.local'
-  #   networks:
-  #     - 'marklogic'
+  grove:
+    build: 
+      context: 'search-ui'
+    depends_on:     
+      - marklogic
+    image: 'grove:latest'
+    ports:
+      - '3000:3000'
+      - '9003:9003'
+    hostname: 'grove.local'
+    container_name: 'grove.local'  
+    environment:
+      GROVE_ML_HOST: 'marklogic.local'
+      GROVE_UI_BUILD_PATH: '../ui/build'
+    networks:
+      - 'marklogic'
 networks:
   marklogic:
     driver: 'bridge'
