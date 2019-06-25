@@ -36,7 +36,7 @@ RUN yum -y install /tmp/MarkLogicConverters.rpm && rm /tmp/MarkLogicConverters.r
 # Expose MarkLogic Server ports.
 # These expose ports between Docker Containers.
 # Publish your application ports in the Docker run command using -p (See Docker Documentation)
-EXPOSE 7997 8000 8001 8002 8010 8011 8013
+EXPOSE 7997 8000 8001 8002 8010 8011 8013 8063
 
 # Start MarkLogic and initialize. This creates default databases
 # and app servers and also creates the first admin account.

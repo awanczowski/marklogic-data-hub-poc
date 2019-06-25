@@ -23,17 +23,19 @@ To address the key problem set the MarkLogic Data Hub will be utilized to aggret
 
 ### Set-up
 
-* The applciation is not distributed with MarkLogic, MarkLogic Converters, or the MarkLogc Data Hub quick start. Please download and copy the files to their respective folders under `docker`
+* The applciation is not distributed with MarkLogic, MarkLogic Converters, or the MarkLogc Data Hub quick start. Please download and copy the files to their respective folders under `marklogic` and `data-hub-quick-start`
 * Two environmental variables will need to be set to have MarkLogic start appropriately. `ML_USER` and `ML_PASS` will be used to configure the server's admin account. The admin account will be used for configuration deployment and access to the Data Hub applciation.
-* Two entireis should be added to your opperating `hosts` file pointing to localhost. `datahub.local` and `marklogic.local`. This is needed since the docker containers will commnicate accross a bridged network and reference the connection property in the gradle properties file. 
-* Within the data-hub solution create a gradle properties file `data-hub\gradle-local.properties`. This should have a two props matching your env variables `mlUsername` and `mlPassword`. Do not commit this file. It is intened for local develoopment only.  
+* Two entireis should be added to your opperating `hosts` file pointing to localhost. `datahub.local`, `grove.local` and `marklogic.local`. This is needed since the docker containers will commnicate accross a bridged network and reference the connection property in the gradle properties file.
+* Within the data-hub solution create a gradle properties file `data-hub-config\gradle-local.properties`. This should have a two props matching your env variables `mlUsername` and `mlPassword`. Do not commit this file. It is intened for local develoopment only.  
 
 ### Deployment
 
-* Within the `docker` folder execute `docker-compose up` to build the images and deploy.
-* Access <http://localhost:8001> and <http://localhost:8080> to verify that MarkLogic and the Data Hub have started.
-* For the intial deploy execute the `gradle mlDeploy` command from the `data-hub` applciation folder.
-* Access the application by reaching <http://datahub.local:8080>
+* Within the root folder execute `docker-compose up` to build all the images and deploy.
+* Access <http://localhost:8001>, <http://localhost:8080>, and <http://localhost:9003> to verify that MarkLogic and the Data Hub have started.
+* For the intial Data Hub deploy execute the `gradle mlDeploy` command from the `data-hub-config` applciation folder.
+* For the intial Search UI deploy execute the `gradle mlDeploy` command from the `search-ui` applciation folder.
+* Access the Search UI  by reaching <http://grove.local:9003>
+* Access the Data Hub by reaching <http://datahub.local:8080>
 * Access the Marklogic admin by reaching <http://marklogic.local:8001>
 
 ### Notes

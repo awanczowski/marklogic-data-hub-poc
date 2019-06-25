@@ -9,6 +9,7 @@ services:
       - '8000-8002:8000-8002'
       - '8010-8011:8010-8011'
       - '8013:8013'
+      - '8063:8063'
     hostname: 'marklogic.local'
     container_name: 'marklogic.local'
     environment:
@@ -20,10 +21,10 @@ services:
       - 'marklogic:/var/opt/MarkLogic'
   datahub:  
     build: 
-      context: 'ml-data-hub-quick-start'
+      context: 'data-hub-quick-start'
     depends_on: 
       - 'marklogic'
-    image: 'ml-data-hub-quick-start:latest'
+    image: 'data-hub-quick-start:latest'
     ports:
       - '8080:8080'
     hostname: 'datahub.local'
@@ -32,7 +33,22 @@ services:
       - 'marklogic'
     # Have you use a data bind mount instead of a namved volume due to an issue mounting windows volumes.   
     volumes:
-      - '../data-hub:/data-hub'
+      - './data-hub-config:/data-hub-config'
+  # grove:
+  #   build: 
+  #     context: 'search-ui'
+  #   depends_on:     
+  #     - marklogic
+  #   image: 'grove:latest'
+  #   ports:
+  #     - '3000:3000'
+  #     - '9003:9003'
+  #   hostname: 'grove.local'
+  #   container_name: 'grove.local'  
+  #   environment:
+  #     GROVE_ML_HOST: 'marklogic.local'
+  #   networks:
+  #     - 'marklogic'
 networks:
   marklogic:
     driver: 'bridge'
