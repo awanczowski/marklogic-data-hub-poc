@@ -3,6 +3,27 @@
     "prefix" : "es",
     "namespace-uri" : "http://marklogic.com/entity-services"
   } ],
-  "range-element-index" : [ ],
+  "range-element-index" : [ {
+    "collation" : "http://marklogic.com/collation/en",
+    "invalid-values" : "reject",
+    "localname" : "modifiedDate",
+    "namespace-uri" : null,
+    "range-value-positions" : false,
+    "scalar-type" : "dateTime"
+  }, {
+    "collation" : "http://marklogic.com/collation/en",
+    "invalid-values" : "reject",
+    "localname" : "createdDate",
+    "namespace-uri" : null,
+    "range-value-positions" : false,
+    "scalar-type" : "dateTime"
+  }, {
+    "collation" : "http://marklogic.com/collation/en",
+    "invalid-values" : "reject",
+    "localname" : "keywords",
+    "namespace-uri" : null,
+    "range-value-positions" : false,
+    "scalar-type" : "string"
+  } ],
   "database-name" : "%%mlFinalDbName%%"
 }

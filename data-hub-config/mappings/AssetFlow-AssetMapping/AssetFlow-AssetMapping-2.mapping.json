@@ -1,0 +1,29 @@
+{
+  "language" : "zxx",
+  "name" : "AssetFlow-AssetMapping",
+  "description" : "Default description",
+  "version" : 2,
+  "targetEntityType" : "Asset-0.0.1/Asset",
+  "sourceContext" : "/",
+  "sourceURI" : "/sample-data/asset/506cd113-a1af-4494-8d14-d4b4acbec2f0.json",
+  "properties" : {
+    "createdDate" : {
+      "sourcedFrom" : "createdDate"
+    },
+    "keywords" : {
+      "sourcedFrom" : "keywords"
+    },
+    "modifiedDate" : {
+      "sourcedFrom" : "modifiedDate"
+    },
+    "description" : {
+      "sourcedFrom" : "description"
+    },
+    "id" : {
+      "sourcedFrom" : "id"
+    },
+    "title" : {
+      "sourcedFrom" : "title"
+    }
+  }
+}

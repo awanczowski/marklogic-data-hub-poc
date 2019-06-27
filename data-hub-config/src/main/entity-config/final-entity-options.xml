@@ -18,6 +18,21 @@
       <search:element ns="http://marklogic.com/entity-services" name="title"/>
     </search:value>
   </search:constraint>
+  <search:constraint name="keywords">
+    <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/en">
+      <search:element ns="" name="keywords" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+  </search:constraint>
+  <search:constraint name="createdDate">
+    <search:range type="xs:dateTime" facet="true">
+      <search:element ns="" name="createdDate" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+  </search:constraint>
+  <search:constraint name="modifiedDate">
+    <search:range type="xs:dateTime" facet="true">
+      <search:element ns="" name="modifiedDate" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+  </search:constraint>
   <search:constraint name="id">
     <search:value>
       <search:element ns="" name="id"/>
@@ -44,13 +59,17 @@
   </search:value>
 </search:constraint> 
 -->
-  <!--The name of this constraint is a duplicate in the generated XML. It is within a comment so that the XML may be valid, but you may need to edit for your use case.
- <search:constraint name="id" xmlns:search="http://marklogic.com/appservices/search">
-  <search:value>
-    <search:element ns="" name="id"/>
-  </search:value>
-</search:constraint> 
--->
+  <search:tuples name="Asset">
+    <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/en">
+      <search:element ns="" name="keywords" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+    <search:range type="xs:dateTime" facet="true">
+      <search:element ns="" name="createdDate" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+    <search:range type="xs:dateTime" facet="true">
+      <search:element ns="" name="modifiedDate" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+  </search:tuples>
   <!--Uncomment to return no results for a blank search, rather than the default of all results
  <search:term xmlns:search="http://marklogic.com/appservices/search">
   <search:empty apply="no-results"/>

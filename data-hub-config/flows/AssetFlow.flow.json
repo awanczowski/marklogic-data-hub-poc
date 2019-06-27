@@ -37,6 +37,30 @@
         "outputURIReplacement" : "",
         "separator" : ","
       }
+    },
+    "2" : {
+      "name" : "AssetMapping",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"AssetIngest\"])",
+        "mapping" : {
+          "name" : "AssetFlow-AssetMapping",
+          "version" : 2
+        },
+        "targetEntity" : "Asset",
+        "sourceDatabase" : "data-hub-STAGING",
+        "collections" : [ "AssetMapping", "Asset" ],
+        "sourceCollection" : "AssetIngest",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-FINAL"
+      },
+      "customHook" : { },
+      "retryLimit" : null,
+      "batchSize" : null,
+      "threadCount" : null,
+      "stepDefinitionName" : "default-mapping",
+      "stepDefinitionType" : "MAPPING"
     }
   }
 }

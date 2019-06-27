@@ -5,7 +5,7 @@
   <!-- Limit all searches to this additional query -->
   <additional-query>
     <cts:collection-query xmlns:cts="http://marklogic.com/cts">
-      <cts:uri>data</cts:uri>
+      <cts:uri>Asset</cts:uri>
     </cts:collection-query>
   </additional-query>
 
@@ -85,16 +85,16 @@
         <score/>
       </sort-order>
     </state>
-    <state name="eyeColorAsc">
+    <state name="createdDateAsc">
       <sort-order
-    direction="ascending" type="xs:string" collation="http://marklogic.com/collation/codepoint">
-        <path-index>eyeColor</path-index>
+    direction="ascending" type="xs:dateTime">
+        <element ns="" name="createdDate" />
       </sort-order>
     </state>
-    <state name="eyeColorDsc">
+    <state name="createdDateDsc">
       <sort-order
-    direction="descending" type="xs:string" collation="http://marklogic.com/collation/codepoint">
-        <path-index>eyeColor</path-index>
+    direction="descending" type="xs:dateTime">
+        <element ns="" name="createdDate" />
       </sort-order>
     </state>
   </operator>
@@ -110,30 +110,12 @@
   </constraint>
 
   <!-- Example facet based on the sample-data -->
-  <constraint name="eyeColor">
-    <range type="xs:string" facet="true" collation="http://marklogic.com/collation/codepoint">
+  <constraint name="keywords">
+    <range type="xs:string" facet="true" collation="http://marklogic.com/collation/en">
       <facet-option>limit=5</facet-option>
       <facet-option>frequency-order</facet-option>
       <facet-option>descending</facet-option>
-      <path-index>eyeColor</path-index>
-    </range>
-  </constraint>
-
-  <constraint name="docFormat">
-    <range type="xs:string" facet="true" collation="http://marklogic.com/collation/codepoint">
-      <facet-option>limit=5</facet-option>
-      <facet-option>item-order</facet-option>
-      <facet-option>descending</facet-option>
-      <path-index>docFormat</path-index>
-    </range>
-  </constraint>
-
-  <constraint name="gender">
-    <range type="xs:string" facet="true" collation="http://marklogic.com/collation/codepoint">
-      <facet-option>limit=5</facet-option>
-      <facet-option>item-order</facet-option>
-      <facet-option>descending</facet-option>
-      <path-index>gender</path-index>
+      <element ns="" name="keywords" />
     </range>
   </constraint>
 

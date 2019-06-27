@@ -46,6 +46,11 @@
     "y" : 555,
     "width" : 350,
     "height" : 166,
-    "vertices" : { }
+    "vertices" : {
+      "InstagramAdAnalytic-Asset" : [ {
+        "x" : 1163.0,
+        "y" : 414.0
+      } ]
+    }
   }
 }

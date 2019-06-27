@@ -22,10 +22,9 @@
       }
     },
     "Asset" : {
-      "primaryKey" : "id",
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ ],
+      "elementRangeIndex" : [ "keywords", "createdDate", "modifiedDate" ],
       "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {
