@@ -37,30 +37,6 @@
         "outputURIReplacement" : "",
         "separator" : ","
       }
-    },
-    "2" : {
-      "name" : "TwitterAdMapping",
-      "description" : "",
-      "options" : {
-        "additionalCollections" : [ ],
-        "sourceQuery" : "cts.collectionQuery([\"TwitterAdIngest\"])",
-        "mapping" : {
-          "name" : "TwitterAdFlow-TwitterAdMapping",
-          "version" : 0
-        },
-        "targetEntity" : "TwitterAd",
-        "sourceDatabase" : "data-hub-STAGING",
-        "collections" : [ "TwitterAdMapping", "TwitterAd" ],
-        "sourceCollection" : "TwitterAdIngest",
-        "outputFormat" : "json",
-        "targetDatabase" : "data-hub-FINAL"
-      },
-      "customHook" : { },
-      "retryLimit" : null,
-      "batchSize" : null,
-      "threadCount" : null,
-      "stepDefinitionName" : "default-mapping",
-      "stepDefinitionType" : "MAPPING"
     }
   }
 }

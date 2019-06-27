@@ -4,6 +4,27 @@
     "version" : "0.0.1"
   },
   "definitions" : {
+    "InstagramAdAnalytic" : {
+      "primaryKey" : "id",
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "value" : {
+          "datatype" : "long"
+        },
+        "type" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        }
+      }
+    },
     "InstagramAd" : {
       "primaryKey" : "id",
       "required" : [ ],
@@ -18,6 +39,12 @@
         },
         "impressions" : {
           "datatype" : "long"
+        },
+        "data" : {
+          "datatype" : "array",
+          "items" : {
+            "$ref" : "#/definitions/InstagramAdAnalytic"
+          }
         }
       }
     }

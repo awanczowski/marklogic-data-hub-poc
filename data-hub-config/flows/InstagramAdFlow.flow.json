@@ -12,13 +12,17 @@
       "description" : "",
       "options" : {
         "additionalCollections" : [ ],
+        "headers" : {
+          "sources" : [ {
+            "name" : "InstagramAdFlow"
+          } ],
+          "createdOn" : "currentDateTime",
+          "createdBy" : "currentUser"
+        },
         "sourceQuery" : "cts.collectionQuery([])",
-        "targetEntity" : "",
         "collections" : [ "InstagramAdIngest" ],
-        "sourceDatabase" : "",
         "permissions" : "rest-reader,read,rest-writer,update",
         "outputFormat" : "json",
-        "sourceCollection" : "",
         "targetDatabase" : "data-hub-STAGING"
       },
       "customHook" : { },
@@ -28,35 +32,32 @@
       "stepDefinitionName" : "default-ingestion",
       "stepDefinitionType" : "INGESTION",
       "fileLocations" : {
-        "inputFilePath" : "/data-hub-config",
+        "inputFilePath" : "/sample-data/instagram",
         "inputFileType" : "json",
         "outputURIReplacement" : "",
         "separator" : ","
       }
     },
     "2" : {
-      "name" : "InstagramAdMapping",
+      "name" : "InstagramAdCustomMapping",
       "description" : "",
       "options" : {
         "additionalCollections" : [ ],
         "sourceQuery" : "cts.collectionQuery([\"InstagramAdIngest\"])",
-        "mapping" : {
-          "name" : "InstagramAdFlow-InstagramAdMapping",
-          "version" : 0
-        },
-        "targetEntity" : "InstagramAd",
+        "targetEntity" : "InstagramAdAnalytic",
+        "collections" : [ "InstagramAdCustomMapping", "InstagramAdAnalytic" ],
         "sourceDatabase" : "data-hub-STAGING",
-        "collections" : [ "InstagramAdMapping", "InstagramAd" ],
-        "sourceCollection" : "InstagramAdIngest",
+        "sourceCollection" : "",
         "outputFormat" : "json",
-        "targetDatabase" : "data-hub-FINAL"
+        "targetDatabase" : "data-hub-STAGING"
       },
-      "customHook" : { },
+      "customHook" : null,
       "retryLimit" : null,
       "batchSize" : null,
       "threadCount" : null,
-      "stepDefinitionName" : "default-mapping",
-      "stepDefinitionType" : "MAPPING"
+      "stepDefinitionName" : "InstagramAdCustomMapping",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/InstagramAdCustomMapping/main.sjs"
     }
   }
 }

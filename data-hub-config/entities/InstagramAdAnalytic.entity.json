@@ -1,9 +1,34 @@
 {
   "info" : {
-    "title" : "Asset",
+    "title" : "InstagramAdAnalytic",
     "version" : "0.0.1"
   },
   "definitions" : {
+    "InstagramAdAnalytic" : {
+      "primaryKey" : "id",
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "value" : {
+          "datatype" : "long"
+        },
+        "type" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "assetId" : {
+          "$ref" : "#/definitions/Asset",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        }
+      }
+    },
     "TwitterAd" : {
       "primaryKey" : "id",
       "required" : [ ],

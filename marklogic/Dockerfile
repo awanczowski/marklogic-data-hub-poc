@@ -42,5 +42,5 @@ EXPOSE 7997 8000 8001 8002 8010 8011 8013 8063
 # and app servers and also creates the first admin account.
 # Also, execute tail such that it waits forever. This prevents
 # the container from automatically stopping after starting MarkLogic.
-CMD /etc/init.d/MarkLogic start && ./tmp/initialize-ml.sh -u $USER -p $PASS -r public && tail -f /dev/null
+CMD /etc/init.d/MarkLogic start && ./tmp/initialize-ml.sh -u $USER -p $PASS -r public && tail -f /var/opt/MarkLogic/Logs/ErrorLog.txt
 

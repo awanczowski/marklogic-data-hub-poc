@@ -33,30 +33,6 @@
         "outputURIReplacement" : "",
         "separator" : ","
       }
-    },
-    "2" : {
-      "name" : "FacebookAdMapping",
-      "description" : "",
-      "options" : {
-        "additionalCollections" : [ ],
-        "sourceQuery" : "cts.collectionQuery([\"FacebookAdIngest\"])",
-        "mapping" : {
-          "name" : "FacebookAdFlow-FacebookAdMapping",
-          "version" : 0
-        },
-        "targetEntity" : "FacebookAd",
-        "sourceDatabase" : "data-hub-STAGING",
-        "collections" : [ "FacebookAdMapping", "FacebookAd" ],
-        "sourceCollection" : "FacebookAdIngest",
-        "outputFormat" : "json",
-        "targetDatabase" : "data-hub-FINAL"
-      },
-      "customHook" : { },
-      "retryLimit" : null,
-      "batchSize" : null,
-      "threadCount" : null,
-      "stepDefinitionName" : "default-mapping",
-      "stepDefinitionType" : "MAPPING"
     }
   }
 }

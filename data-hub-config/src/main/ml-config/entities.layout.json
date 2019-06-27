@@ -7,8 +7,8 @@
     "vertices" : { }
   },
   "Asset" : {
-    "x" : 940,
-    "y" : 501,
+    "x" : 993,
+    "y" : 83,
     "width" : 350,
     "height" : 232,
     "vertices" : { }
@@ -21,24 +21,31 @@
     "vertices" : { }
   },
   "InstagramAd" : {
-    "x" : 388,
-    "y" : 400,
+    "x" : 995,
+    "y" : 793,
     "width" : 350,
     "height" : 144,
     "vertices" : { }
   },
   "FacebookAd" : {
-    "x" : 389,
-    "y" : 561,
+    "x" : 543,
+    "y" : 374,
     "width" : 350,
     "height" : 144,
     "vertices" : { }
   },
   "TwitterAd" : {
-    "x" : 392,
-    "y" : 717,
+    "x" : 1431,
+    "y" : 370,
     "width" : 350,
     "height" : 144,
+    "vertices" : { }
+  },
+  "InstagramAdAnalytic" : {
+    "x" : 993,
+    "y" : 555,
+    "width" : 350,
+    "height" : 166,
     "vertices" : { }
   }
 }
