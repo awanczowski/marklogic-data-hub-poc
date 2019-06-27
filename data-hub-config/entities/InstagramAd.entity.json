@@ -1,0 +1,25 @@
+{
+  "info" : {
+    "title" : "InstagramAd",
+    "version" : "0.0.1"
+  },
+  "definitions" : {
+    "InstagramAd" : {
+      "primaryKey" : "id",
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "impressions" : {
+          "datatype" : "long"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "name" : "AssetIngestion",
+  "description" : "",
+  "batchSize" : 100,
+  "threadCount" : 4,
+  "stopOnError" : false,
+  "options" : { },
+  "version" : 0,
+  "steps" : {
+    "1" : {
+      "name" : "AssetIngest",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ "assets" ],
+        "headers" : {
+          "sources" : [ {
+            "name" : "AssetIngestion"
+          } ],
+          "createdOn" : "currentDateTime",
+          "createdBy" : "currentUser"
+        },
+        "sourceQuery" : "cts.collectionQuery([])",
+        "collections" : [ "AssetIngest", "assets" ],
+        "permissions" : "rest-reader,read,rest-writer,update",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : { },
+      "retryLimit" : 0,
+      "batchSize" : 0,
+      "threadCount" : 0,
+      "stepDefinitionName" : "default-ingestion",
+      "stepDefinitionType" : "INGESTION",
+      "fileLocations" : {
+        "inputFilePath" : "/sample-data/asset",
+        "inputFileType" : "json",
+        "outputURIReplacement" : "",
+        "separator" : ","
+      }
+    },
+    "2" : {
+      "name" : "AssetMapping",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"AssetIngest\"])",
+        "mapping" : {
+          "name" : "AssetIngestion-AssetMapping",
+          "version" : 1
+        },
+        "targetEntity" : "Asset",
+        "sourceDatabase" : "data-hub-STAGING",
+        "collections" : [ "AssetMapping", "Asset" ],
+        "sourceCollection" : "AssetIngest",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-FINAL"
+      },
+      "customHook" : { },
+      "retryLimit" : 0,
+      "batchSize" : 0,
+      "threadCount" : 0,
+      "stepDefinitionName" : "default-mapping",
+      "stepDefinitionType" : "MAPPING"
+    },
+    "3" : {
+      "name" : "AssetRelationship",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"AssetMapping\"])",
+        "targetEntity" : "Asset",
+        "collections" : [ "AssetRelationship", "Asset" ],
+        "sourceDatabase" : "data-hub-STAGING",
+        "sourceCollection" : "AssetMapping",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : null,
+      "retryLimit" : null,
+      "batchSize" : null,
+      "threadCount" : null,
+      "stepDefinitionName" : "AssetRelationship",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/AssetRelationship/main.sjs"
+    }
+  }
+}

@@ -5,5 +5,40 @@
     "width" : 350,
     "height" : 166,
     "vertices" : { }
+  },
+  "Asset" : {
+    "x" : 940,
+    "y" : 501,
+    "width" : 350,
+    "height" : 232,
+    "vertices" : { }
+  },
+  "AssetRelation" : {
+    "x" : 938,
+    "y" : 307,
+    "width" : 350,
+    "height" : 144,
+    "vertices" : { }
+  },
+  "InstagramAd" : {
+    "x" : 388,
+    "y" : 400,
+    "width" : 350,
+    "height" : 144,
+    "vertices" : { }
+  },
+  "FacebookAd" : {
+    "x" : 389,
+    "y" : 561,
+    "width" : 350,
+    "height" : 144,
+    "vertices" : { }
+  },
+  "TwitterAd" : {
+    "x" : 392,
+    "y" : 717,
+    "width" : 350,
+    "height" : 144,
+    "vertices" : { }
   }
 }

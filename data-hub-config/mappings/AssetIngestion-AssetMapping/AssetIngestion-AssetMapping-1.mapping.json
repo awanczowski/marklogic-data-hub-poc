@@ -1,0 +1,41 @@
+{
+  "language" : "zxx",
+  "name" : "AssetIngestion-AssetMapping",
+  "description" : "",
+  "version" : 1,
+  "targetEntityType" : "Asset-0.0.1/Asset",
+  "sourceContext" : "//",
+  "sourceURI" : "/sample-data/asset/63c23fe7-47cd-475e-b3ae-8de9bb95b59e.json",
+  "properties" : {
+    "facebookAds" : {
+      "sourcedFrom" : "facebookCampaigns"
+    },
+    "dateCreated" : {
+      "sourcedFrom" : "createdDate"
+    },
+    "keywords" : {
+      "sourcedFrom" : "keywords"
+    },
+    "twitterAds" : {
+      "sourcedFrom" : "twitterCampaigns"
+    },
+    "description" : {
+      "sourcedFrom" : "description"
+    },
+    "instagramAds" : {
+      "sourcedFrom" : "instagramCampaigns"
+    },
+    "dateModified" : {
+      "sourcedFrom" : "modifiedDate"
+    },
+    "id" : {
+      "sourcedFrom" : "id"
+    },
+    "title" : {
+      "sourcedFrom" : "title"
+    },
+    "relations" : {
+      "sourcedFrom" : "relations"
+    }
+  }
+}
