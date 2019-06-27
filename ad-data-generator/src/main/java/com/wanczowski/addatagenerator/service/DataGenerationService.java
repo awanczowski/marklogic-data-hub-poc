@@ -1,16 +1,16 @@
 package com.wanczowski.addatagenerator.service;
 
 import com.wanczowski.addatagenerator.model.*;
+import com.wanczowski.addatagenerator.model.taxonomy.ColorTaxonomy;
+import com.wanczowski.addatagenerator.model.taxonomy.GarmentTaxonomy;
+import com.wanczowski.addatagenerator.model.taxonomy.MaterialTaxonomy;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,25 +32,30 @@ public class DataGenerationService {
 
     public SampleData generate() {
 
-        for(int run = 0; run <= this.runs; run++) {
+        for (int run = 0; run <= this.runs; run++) {
             Asset mainAsset = new Asset();
             mainAsset.setId(UUID.randomUUID().toString());
-            mainAsset.setDescription("--- Asset");
+            mainAsset.setTitle("Social Campaign " + run);
             mainAsset.setCreatedDate(LocalDateTime.now());
             mainAsset.setModifiedDate(LocalDateTime.now());
-            mainAsset.setKeywords(new ArrayList<>());
 
             List<Asset> childAssets = new ArrayList<>();
+
             for (int x = 0; x < Math.random() * 10; x++) {
+                List<String> keywords = getKeywords();
                 childAssets.add(new Asset(
                         UUID.randomUUID().toString(),
-                        "--- Asset",
-                        "",
+                        String.join(" ", keywords) + " - Product Image",
+                        null,
                         LocalDateTime.now(),
                         LocalDateTime.now(),
-                        new ArrayList<>()
+                        keywords
                 ));
             }
+
+            List<String> keywords = childAssets.stream().map(c -> c.getKeywords()).flatMap(List::stream).collect(Collectors.toList());
+            mainAsset.setKeywords(keywords);
+
             this.assets.addAll(childAssets);
 
             mainAsset.setRelations(childAssets
@@ -73,6 +78,25 @@ public class DataGenerationService {
         }
 
         return new SampleData(this.assets, this.facebookAds, this.instagramAds, this.twitterAds);
+    }
+
+    private List<String> getKeywords() {
+        List<String> keywords = new ArrayList<>();
+        Random random = new Random();
+
+        ColorTaxonomy[] colorValues = ColorTaxonomy.values();
+        Integer colorPos = random.nextInt(colorValues.length);
+        keywords.add(colorValues[colorPos].getLabel());
+
+        MaterialTaxonomy[] materialValues = MaterialTaxonomy.values();
+        Integer materialPos = random.nextInt(materialValues.length);
+        keywords.add(materialValues[materialPos].getLabel());
+
+        GarmentTaxonomy[] garmentValues = GarmentTaxonomy.values();
+        Integer garmentPos = random.nextInt(garmentValues.length);
+        keywords.add(garmentValues[garmentPos].getLabel());
+
+        return keywords;
     }
 
     public TwitterAd generateTwitterAd() {
