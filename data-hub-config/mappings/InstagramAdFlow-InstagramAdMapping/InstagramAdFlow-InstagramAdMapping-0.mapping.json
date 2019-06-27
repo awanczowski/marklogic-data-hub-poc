@@ -1,0 +1,10 @@
+{
+  "language" : "zxx",
+  "name" : "InstagramAdFlow-InstagramAdMapping",
+  "description" : "",
+  "version" : 0,
+  "targetEntityType" : "InstagramAd-0.0.1/InstagramAd",
+  "sourceContext" : "//",
+  "sourceURI" : "",
+  "properties" : { }
+}

@@ -1,0 +1,10 @@
+{
+  "language" : "zxx",
+  "name" : "FacebookAdFlow-FacebookAdMapping",
+  "description" : "",
+  "version" : 0,
+  "targetEntityType" : "FacebookAd-0.0.1/FacebookAd",
+  "sourceContext" : "//",
+  "sourceURI" : "",
+  "properties" : { }
+}
