@@ -1,0 +1,17 @@
+{
+  "language" : "zxx",
+  "name" : "TwitterAdFlow-TwitterAdMapping",
+  "description" : "Default description",
+  "version" : 2,
+  "targetEntityType" : "TwitterAd-0.0.1/TwitterAd",
+  "sourceContext" : "/",
+  "sourceURI" : "/sample-data/twitter/t6nGA.json",
+  "properties" : {
+    "id" : {
+      "sourcedFrom" : "id"
+    },
+    "impressions" : {
+      "sourcedFrom" : "data"
+    }
+  }
+}

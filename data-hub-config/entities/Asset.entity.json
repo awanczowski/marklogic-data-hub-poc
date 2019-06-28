@@ -4,23 +4,6 @@
     "version" : "0.0.1"
   },
   "definitions" : {
-    "TwitterAd" : {
-      "primaryKey" : "id",
-      "required" : [ ],
-      "pii" : [ ],
-      "elementRangeIndex" : [ ],
-      "rangeIndex" : [ ],
-      "wordLexicon" : [ ],
-      "properties" : {
-        "id" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
-        },
-        "impressions" : {
-          "datatype" : "long"
-        }
-      }
-    },
     "Asset" : {
       "required" : [ ],
       "pii" : [ ],
@@ -52,35 +35,6 @@
         },
         "modifiedDate" : {
           "datatype" : "dateTime"
-        },
-        "twitterAd" : {
-          "datatype" : "array",
-          "items" : {
-            "$ref" : "#/definitions/TwitterAd"
-          }
-        },
-        "facebookAd" : {
-          "datatype" : "array",
-          "items" : {
-            "$ref" : "#/definitions/FacebookAd"
-          }
-        }
-      }
-    },
-    "FacebookAd" : {
-      "primaryKey" : "id",
-      "required" : [ ],
-      "pii" : [ ],
-      "elementRangeIndex" : [ ],
-      "rangeIndex" : [ ],
-      "wordLexicon" : [ ],
-      "properties" : {
-        "id" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
-        },
-        "impressions" : {
-          "datatype" : "long"
         }
       }
     }

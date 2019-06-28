@@ -56,11 +56,32 @@
         "targetDatabase" : "data-hub-FINAL"
       },
       "customHook" : { },
+      "retryLimit" : 0,
+      "batchSize" : 0,
+      "threadCount" : 0,
+      "stepDefinitionName" : "default-mapping",
+      "stepDefinitionType" : "MAPPING"
+    },
+    "3" : {
+      "name" : "AssetRelations",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"AssetMapping\"])",
+        "targetEntity" : "Asset",
+        "collections" : [ "AssetRelations", "Asset" ],
+        "sourceDatabase" : "data-hub-STAGING",
+        "sourceCollection" : "AssetMapping",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-FINAL"
+      },
+      "customHook" : null,
       "retryLimit" : null,
       "batchSize" : null,
       "threadCount" : null,
-      "stepDefinitionName" : "default-mapping",
-      "stepDefinitionType" : "MAPPING"
+      "stepDefinitionName" : "AssetRelations",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/AssetRelations/main.sjs"
     }
   }
 }

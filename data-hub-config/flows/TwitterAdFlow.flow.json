@@ -37,6 +37,27 @@
         "outputURIReplacement" : "",
         "separator" : ","
       }
+    },
+    "2" : {
+      "name" : "TwitterAdCustomMapping",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"TwitterAdIngest\"])",
+        "targetEntity" : "TwitterAd",
+        "collections" : [ "TwitterAdCustomMapping", "TwitterAd" ],
+        "sourceDatabase" : "data-hub-STAGING",
+        "sourceCollection" : "TwitterAdIngest",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-FINAL"
+      },
+      "customHook" : null,
+      "retryLimit" : null,
+      "batchSize" : null,
+      "threadCount" : null,
+      "stepDefinitionName" : "TwitterAdCustomMapping",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/TwitterAdCustomMapping/main.sjs"
     }
   }
 }

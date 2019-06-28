@@ -11,7 +11,12 @@
     "y" : 83,
     "width" : 350,
     "height" : 232,
-    "vertices" : { }
+    "vertices" : {
+      "Asset-FacebookAd" : [ {
+        "x" : 980.0,
+        "y" : 306.0
+      } ]
+    }
   },
   "AssetRelation" : {
     "x" : 938,

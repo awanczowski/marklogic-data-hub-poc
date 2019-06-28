@@ -1,0 +1,10 @@
+{
+  "language" : "zxx",
+  "name" : "TwitterAdFlow-TwitterAdMapping",
+  "description" : "",
+  "version" : 0,
+  "targetEntityType" : "TwitterAd-0.0.1/TwitterAd",
+  "sourceContext" : "//",
+  "sourceURI" : "",
+  "properties" : { }
+}
