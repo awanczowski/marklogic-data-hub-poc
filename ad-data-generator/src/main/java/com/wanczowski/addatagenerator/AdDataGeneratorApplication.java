@@ -87,7 +87,6 @@ public class AdDataGeneratorApplication implements ApplicationRunner {
                 }
         );
 
-        log.info(this.objectMapper.writeValueAsString(sampleData));
         log.info("Generation complete!");
     }
 }
