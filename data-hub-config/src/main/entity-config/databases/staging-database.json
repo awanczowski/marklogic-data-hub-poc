@@ -4,23 +4,23 @@
     "namespace-uri" : "http://marklogic.com/entity-services"
   } ],
   "range-element-index" : [ {
-    "collation" : "http://marklogic.com/collation/en",
+    "collation" : "http://marklogic.com/collation/codepoint",
     "invalid-values" : "reject",
-    "localname" : "modifiedDate",
+    "localname" : "assetId",
     "namespace-uri" : null,
     "range-value-positions" : false,
-    "scalar-type" : "dateTime"
+    "scalar-type" : "string"
   }, {
-    "collation" : "http://marklogic.com/collation/en",
+    "collation" : "http://marklogic.com/collation/codepoint",
     "invalid-values" : "reject",
-    "localname" : "createdDate",
+    "localname" : "id",
     "namespace-uri" : null,
     "range-value-positions" : false,
-    "scalar-type" : "dateTime"
+    "scalar-type" : "string"
   }, {
-    "collation" : "http://marklogic.com/collation/en",
+    "collation" : "http://marklogic.com/collation/codepoint",
     "invalid-values" : "reject",
-    "localname" : "keywords",
+    "localname" : "type",
     "namespace-uri" : null,
     "range-value-positions" : false,
     "scalar-type" : "string"

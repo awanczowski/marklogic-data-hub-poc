@@ -1,61 +1,37 @@
 {
-  "Person" : {
-    "x" : 10,
-    "y" : 115,
-    "width" : 350,
-    "height" : 166,
-    "vertices" : { }
-  },
   "Asset" : {
-    "x" : 993,
-    "y" : 83,
+    "x" : 1055,
+    "y" : 241,
     "width" : 350,
-    "height" : 232,
-    "vertices" : {
-      "Asset-FacebookAd" : [ {
-        "x" : 980.0,
-        "y" : 306.0
-      } ]
-    }
-  },
-  "AssetRelation" : {
-    "x" : 938,
-    "y" : 307,
-    "width" : 350,
-    "height" : 144,
+    "height" : 210,
     "vertices" : { }
   },
-  "InstagramAd" : {
-    "x" : 995,
-    "y" : 793,
-    "width" : 350,
-    "height" : 144,
-    "vertices" : { }
-  },
-  "FacebookAd" : {
-    "x" : 543,
-    "y" : 374,
-    "width" : 350,
-    "height" : 144,
-    "vertices" : { }
-  },
-  "TwitterAd" : {
-    "x" : 1431,
-    "y" : 370,
-    "width" : 350,
-    "height" : 144,
-    "vertices" : { }
-  },
-  "InstagramAdAnalytic" : {
-    "x" : 993,
-    "y" : 555,
+  "AdImpressions" : {
+    "x" : 1065,
+    "y" : 511,
     "width" : 350,
     "height" : 166,
-    "vertices" : {
-      "InstagramAdAnalytic-Asset" : [ {
-        "x" : 1163.0,
-        "y" : 414.0
-      } ]
-    }
+    "vertices" : { }
+  },
+  "FacebookCampaign" : {
+    "x" : 1062,
+    "y" : 700,
+    "width" : 350,
+    "height" : 122,
+    "vertices" : { }
+  },
+  "InstagramCampaign" : {
+    "x" : 671,
+    "y" : 707,
+    "width" : 350,
+    "height" : 122,
+    "vertices" : { }
+  },
+  "TwitterCampaign" : {
+    "x" : 1448,
+    "y" : 701,
+    "width" : 350,
+    "height" : 122,
+    "vertices" : { }
   }
 }

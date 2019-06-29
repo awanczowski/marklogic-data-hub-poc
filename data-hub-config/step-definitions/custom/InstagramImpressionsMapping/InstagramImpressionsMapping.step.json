@@ -1,0 +1,22 @@
+{
+  "language" : "zxx",
+  "name" : "InstagramImpressionsMapping",
+  "description" : "",
+  "type" : "CUSTOM",
+  "version" : 1,
+  "options" : {
+    "additionalCollections" : [ ],
+    "sourceQuery" : "cts.collectionQuery([\"InstagramAdIngestion\"])",
+    "targetEntity" : "AdImpressions",
+    "collections" : [ "InstagramImpressionsMapping", "AdImpressions" ],
+    "sourceDatabase" : "data-hub-STAGING",
+    "sourceCollection" : "InstagramAdIngestion",
+    "outputFormat" : "json",
+    "targetDatabase" : "data-hub-STAGING"
+  },
+  "customHook" : { },
+  "modulePath" : "/custom-modules/custom/InstagramImpressionsMapping/main.sjs",
+  "retryLimit" : 0,
+  "batchSize" : 100,
+  "threadCount" : 4
+}

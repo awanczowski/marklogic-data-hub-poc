@@ -1,5 +1,5 @@
 {
-  "name" : "TwitterAdFlow",
+  "name" : "FacebookFlow",
   "description" : "",
   "batchSize" : 100,
   "threadCount" : 4,
@@ -8,19 +8,19 @@
   "version" : 0,
   "steps" : {
     "1" : {
-      "name" : "TwitterAdIngest",
+      "name" : "FacebookAdIngest",
       "description" : "",
       "options" : {
         "additionalCollections" : [ ],
         "headers" : {
           "sources" : [ {
-            "name" : "TwitterAdFlow"
+            "name" : "FacebookFlow"
           } ],
           "createdOn" : "currentDateTime",
           "createdBy" : "currentUser"
         },
         "sourceQuery" : "cts.collectionQuery([])",
-        "collections" : [ "TwitterAdIngest" ],
+        "collections" : [ "FacebookAdIngest" ],
         "permissions" : "rest-reader,read,rest-writer,update",
         "outputFormat" : "json",
         "targetDatabase" : "data-hub-STAGING"
@@ -32,32 +32,32 @@
       "stepDefinitionName" : "default-ingestion",
       "stepDefinitionType" : "INGESTION",
       "fileLocations" : {
-        "inputFilePath" : "/sample-data/twitter",
+        "inputFilePath" : "/sample-data",
         "inputFileType" : "json",
         "outputURIReplacement" : "",
         "separator" : ","
       }
     },
     "2" : {
-      "name" : "TwitterAdCustomMapping",
+      "name" : "FacebookImpressionsMapping",
       "description" : "",
       "options" : {
         "additionalCollections" : [ ],
-        "sourceQuery" : "cts.collectionQuery([\"TwitterAdIngest\"])",
-        "targetEntity" : "TwitterAd",
-        "collections" : [ "TwitterAdCustomMapping", "TwitterAd" ],
+        "sourceQuery" : "cts.collectionQuery([\"FacebookAdIngest\"])",
+        "targetEntity" : "AdImpressions",
+        "collections" : [ "FacebookImpressionsMapping", "AdImpressions" ],
         "sourceDatabase" : "data-hub-STAGING",
-        "sourceCollection" : "TwitterAdIngest",
+        "sourceCollection" : "FacebookAdIngest",
         "outputFormat" : "json",
-        "targetDatabase" : "data-hub-FINAL"
+        "targetDatabase" : "data-hub-STAGING"
       },
       "customHook" : null,
       "retryLimit" : null,
       "batchSize" : null,
       "threadCount" : null,
-      "stepDefinitionName" : "TwitterAdCustomMapping",
+      "stepDefinitionName" : "FacebookImpressionsMapping",
       "stepDefinitionType" : "CUSTOM",
-      "modulePath" : "/custom-modules/custom/TwitterAdCustomMapping/main.sjs"
+      "modulePath" : "/custom-modules/custom/FacebookImpressionsMapping/main.sjs"
     }
   }
 }

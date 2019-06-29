@@ -5,9 +5,10 @@
   },
   "definitions" : {
     "Asset" : {
+      "primaryKey" : "id",
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ "keywords", "createdDate", "modifiedDate" ],
+      "elementRangeIndex" : [ "id" ],
       "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {
@@ -16,10 +17,6 @@
           "collation" : "http://marklogic.com/collation/codepoint"
         },
         "title" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
-        },
-        "description" : {
           "datatype" : "string",
           "collation" : "http://marklogic.com/collation/codepoint"
         },

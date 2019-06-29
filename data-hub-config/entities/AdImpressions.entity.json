@@ -1,14 +1,14 @@
 {
   "info" : {
-    "title" : "InstagramAdAnalytic",
+    "title" : "AdImpressions",
     "version" : "0.0.1"
   },
   "definitions" : {
-    "InstagramAdAnalytic" : {
+    "AdImpressions" : {
       "primaryKey" : "id",
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ ],
+      "elementRangeIndex" : [ "type", "assetId" ],
       "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {
@@ -16,10 +16,15 @@
           "datatype" : "string",
           "collation" : "http://marklogic.com/collation/codepoint"
         },
-        "value" : {
-          "datatype" : "long"
-        },
         "type" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "value" : {
+          "datatype" : "long",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "assetId" : {
           "datatype" : "string",
           "collation" : "http://marklogic.com/collation/codepoint"
         }

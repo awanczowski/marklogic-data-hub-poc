@@ -1,5 +1,5 @@
 {
-  "name" : "InstagramAdFlow",
+  "name" : "InstagramFlow",
   "description" : "",
   "batchSize" : 100,
   "threadCount" : 4,
@@ -8,19 +8,19 @@
   "version" : 0,
   "steps" : {
     "1" : {
-      "name" : "InstagramAdIngest",
+      "name" : "InstagramAdIngestion",
       "description" : "",
       "options" : {
         "additionalCollections" : [ ],
         "headers" : {
           "sources" : [ {
-            "name" : "InstagramAdFlow"
+            "name" : "InstagramFlow"
           } ],
           "createdOn" : "currentDateTime",
           "createdBy" : "currentUser"
         },
         "sourceQuery" : "cts.collectionQuery([])",
-        "collections" : [ "InstagramAdIngest" ],
+        "collections" : [ "InstagramAdIngestion" ],
         "permissions" : "rest-reader,read,rest-writer,update",
         "outputFormat" : "json",
         "targetDatabase" : "data-hub-STAGING"
@@ -39,15 +39,15 @@
       }
     },
     "2" : {
-      "name" : "InstagramAdCustomMapping",
+      "name" : "InstagramImpressionsMapping",
       "description" : "",
       "options" : {
         "additionalCollections" : [ ],
-        "sourceQuery" : "cts.collectionQuery([\"InstagramAdIngest\"])",
-        "targetEntity" : "InstagramAdAnalytic",
-        "collections" : [ "InstagramAdCustomMapping", "InstagramAdAnalytic" ],
+        "sourceQuery" : "cts.collectionQuery([\"InstagramAdIngestion\"])",
+        "targetEntity" : "AdImpressions",
+        "collections" : [ "InstagramImpressionsMapping", "AdImpressions" ],
         "sourceDatabase" : "data-hub-STAGING",
-        "sourceCollection" : "",
+        "sourceCollection" : "InstagramAdIngestion",
         "outputFormat" : "json",
         "targetDatabase" : "data-hub-STAGING"
       },
@@ -55,9 +55,9 @@
       "retryLimit" : null,
       "batchSize" : null,
       "threadCount" : null,
-      "stepDefinitionName" : "InstagramAdCustomMapping",
+      "stepDefinitionName" : "InstagramImpressionsMapping",
       "stepDefinitionType" : "CUSTOM",
-      "modulePath" : "/custom-modules/custom/InstagramAdCustomMapping/main.sjs"
+      "modulePath" : "/custom-modules/custom/InstagramImpressionsMapping/main.sjs"
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "language" : "zxx",
+  "name" : "TwitterImpressionMapping",
+  "description" : "",
+  "type" : "CUSTOM",
+  "version" : 1,
+  "options" : {
+    "additionalCollections" : [ ],
+    "sourceQuery" : "cts.collectionQuery([\"TwitterIngest\"])",
+    "targetEntity" : "AdImpressions",
+    "collections" : [ "TwitterImpressionMapping", "AdImpressions" ],
+    "sourceDatabase" : "data-hub-STAGING",
+    "sourceCollection" : "TwitterIngest",
+    "outputFormat" : "json",
+    "targetDatabase" : "data-hub-STAGING"
+  },
+  "customHook" : { },
+  "modulePath" : "/custom-modules/custom/TwitterImpressionMapping/main.sjs",
+  "retryLimit" : 0,
+  "batchSize" : 100,
+  "threadCount" : 4
+}

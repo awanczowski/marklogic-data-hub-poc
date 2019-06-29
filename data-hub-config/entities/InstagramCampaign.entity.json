@@ -1,10 +1,10 @@
 {
   "info" : {
-    "title" : "FacebookAd",
+    "title" : "InstagramCampaign",
     "version" : "0.0.1"
   },
   "definitions" : {
-    "FacebookAd" : {
+    "InstagramCampaign" : {
       "primaryKey" : "id",
       "required" : [ ],
       "pii" : [ ],
@@ -15,9 +15,6 @@
         "id" : {
           "datatype" : "string",
           "collation" : "http://marklogic.com/collation/codepoint"
-        },
-        "impressions" : {
-          "datatype" : "long"
         }
       }
     }

@@ -5,19 +5,16 @@
   "version" : 2,
   "targetEntityType" : "Asset-0.0.1/Asset",
   "sourceContext" : "/",
-  "sourceURI" : "/sample-data/asset/506cd113-a1af-4494-8d14-d4b4acbec2f0.json",
+  "sourceURI" : "/sample-data/asset/988dd466-ee43-437b-807a-7a51af1b6de4.json",
   "properties" : {
     "createdDate" : {
       "sourcedFrom" : "createdDate"
     },
     "keywords" : {
-      "sourcedFrom" : "keywords"
+      "sourcedFrom" : "description"
     },
     "modifiedDate" : {
       "sourcedFrom" : "modifiedDate"
-    },
-    "description" : {
-      "sourcedFrom" : "description"
     },
     "id" : {
       "sourcedFrom" : "id"

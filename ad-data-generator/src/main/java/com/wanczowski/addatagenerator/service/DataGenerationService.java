@@ -33,48 +33,28 @@ public class DataGenerationService {
     public SampleData generate() {
 
         for (int run = 0; run <= this.runs; run++) {
-            Asset mainAsset = new Asset();
-            mainAsset.setId(UUID.randomUUID().toString());
-            mainAsset.setTitle("Social Campaign " + run);
-            mainAsset.setCreatedDate(LocalDateTime.now());
-            mainAsset.setModifiedDate(LocalDateTime.now());
-
-            List<Asset> childAssets = new ArrayList<>();
-
-            for (int x = 0; x < Math.random() * 10; x++) {
-                List<String> keywords = getKeywords();
-                childAssets.add(new Asset(
+            List<String> keywords = getKeywords();
+            Asset  asset = new Asset(
                         UUID.randomUUID().toString(),
-                        String.join(" ", keywords) + " - Product Image",
+                        String.join(" ", keywords),
                         null,
                         LocalDateTime.now(),
                         LocalDateTime.now(),
-                        keywords
-                ));
-            }
-
-            List<String> keywords = childAssets.stream().map(c -> c.getKeywords()).flatMap(List::stream).collect(Collectors.toList());
-            mainAsset.setKeywords(keywords);
-
-            this.assets.addAll(childAssets);
-
-            mainAsset.setRelations(childAssets
-                    .stream()
-                    .map(a -> mainAsset.new Relation(a.getId(), Asset.RelationType.HAS_PART))
-                    .collect(Collectors.toList()));
+                        keywords);
+            
 
             TwitterAd twitterAd = this.generateTwitterAd();
             this.twitterAds.add(twitterAd);
-            mainAsset.setTwitterCampaigns(twitterAd.getData().stream().map(d -> d.getId()).collect(Collectors.toList()));
+            asset.setTwitterCampaigns(twitterAd.getData().stream().map(d -> d.getId()).collect(Collectors.toList()));
 
-            InstagramAd instagramAd = this.generateInstagramAd(mainAsset.getId());
+            InstagramAd instagramAd = this.generateInstagramAd(asset.getId());
             this.instagramAds.add(instagramAd);
 
             FacebookAd facebookAd = this.generateFacebookAd();
             this.facebookAds.add(facebookAd);
-            mainAsset.setFacebookCampaigns(Arrays.asList(facebookAd.getId()));
+            asset.setFacebookCampaigns(Arrays.asList(facebookAd.getId()));
 
-            this.assets.add(mainAsset);
+            this.assets.add(asset);
         }
 
         return new SampleData(this.assets, this.facebookAds, this.instagramAds, this.twitterAds);

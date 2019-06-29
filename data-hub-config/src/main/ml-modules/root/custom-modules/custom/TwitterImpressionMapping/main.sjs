@@ -1,8 +1,8 @@
 const DataHub = require("/data-hub/5/datahub.sjs");
 const datahub = new DataHub();
 
-function main(content, options) {  
-  
+function main(content, options) {
+
   //grab the doc id/uri
   let id = content.uri;
 
@@ -51,38 +51,32 @@ function main(content, options) {
   let instance = datahub.flow.flowUtils.getInstance(doc) || {};
 
   // get triples, return null if empty or cannot be found
-  let triples = datahub.flow.flowUtils.getTriples(doc) || [];
+  let triples = [];
 
   //gets headers, return null if cannot be found
-  let headers = datahub.flow.flowUtils.getHeaders(doc) || {};
+  let headers = {};
 
   //If you want to set attachments, uncomment here
   // instance['$attachments'] = doc;
 
-  //insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
 
-  // Seperating each of the Instagram analytics so they can be saved as their own objects.
-  if (instance.data != null) {
-    for (i = 0; i < instance.data.length; i++) {
-      let data = instance.data[i];
-      let analytic = {};
-      analytic.id = data.id;
-      analytic.assetId = fn.tokenize(data.id, '/').toArray()[0];
-      analytic.type = data.name;
-      if (data.values != null && data.values.length > 0) {
-          analytic.value = data.values[0].value;
-      }
-    }
+  //insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
+  let analytic = {};
+  if (instance.data != null && instance.data.length > 0) {
+    let data = instance.data[0];
+    analytic.id = data.id;
+    analytic.type = 'Twitter';
+    analytic.value = data.total_audience_reach;
   }
 
   //form our envelope here now, specifying our output format
-  let envelope = datahub.flow.flowUtils.makeEnvelope(instance, headers, triples, outputFormat);
+  let envelope = datahub.flow.flowUtils.makeEnvelope(analytic, headers, triples, outputFormat);
 
   //assign our envelope value
   content.value = envelope;
 
   //assign the uri we want, in this case the same
-  content.uri = id;
+  content.uri = id + "/impressions." + outputFormat;
 
   //assign the context we want
   content.context = context;

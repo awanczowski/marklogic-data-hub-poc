@@ -51,30 +51,31 @@ function main(content, options) {
   let instance = datahub.flow.flowUtils.getInstance(doc) || {};
 
   // get triples, return null if empty or cannot be found
-  let triples = datahub.flow.flowUtils.getTriples(doc) || [];
+  let triples = [];
 
   //gets headers, return null if cannot be found
-  let headers = datahub.flow.flowUtils.getHeaders(doc) || {};
+  let headers = {};
 
   //If you want to set attachments, uncomment here
   // instance['$attachments'] = doc;
 
 
   //insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
-  instance.id = instance.request.id;
-  if (instance.data != null && instance.data.length > 0) {
-    let impressions = instance.data[0].total_audience_reach;
-    instance.impressions = impressions;
+  let analytic = {};
+  if (instance.insights.data != null && instance.insights.data.length > 0) {
+    analytic.id = instance.id;
+    analytic.type = 'Facebook';
+    analytic.value = instance.insights.data[0].impressions;
   }
 
   //form our envelope here now, specifying our output format
-  let envelope = datahub.flow.flowUtils.makeEnvelope(instance, headers, triples, outputFormat);
+  let envelope = datahub.flow.flowUtils.makeEnvelope(analytic, headers, triples, outputFormat);
 
   //assign our envelope value
   content.value = envelope;
 
   //assign the uri we want, in this case the same
-  content.uri = id;
+  content.uri = id + '/impressions.' + outputFormat;
 
   //assign the context we want
   content.context = context;
