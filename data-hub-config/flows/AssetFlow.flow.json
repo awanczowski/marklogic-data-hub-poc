@@ -1,0 +1,63 @@
+{
+  "name" : "AssetFlow",
+  "description" : "",
+  "batchSize" : 100,
+  "threadCount" : 4,
+  "stopOnError" : false,
+  "options" : { },
+  "version" : 0,
+  "steps" : {
+    "1" : {
+      "name" : "AssetIngest",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "headers" : {
+          "sources" : [ {
+            "name" : "AssetFlow"
+          } ],
+          "createdOn" : "currentDateTime",
+          "createdBy" : "currentUser"
+        },
+        "sourceQuery" : "cts.collectionQuery([])",
+        "collections" : [ "AssetIngest" ],
+        "permissions" : "rest-reader,read,rest-writer,update",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : { },
+      "retryLimit" : 0,
+      "batchSize" : 0,
+      "threadCount" : 0,
+      "stepDefinitionName" : "default-ingestion",
+      "stepDefinitionType" : "INGESTION",
+      "fileLocations" : {
+        "inputFilePath" : "/sample-data/asset",
+        "inputFileType" : "json",
+        "outputURIReplacement" : "",
+        "separator" : ","
+      }
+    },
+    "2" : {
+      "name" : "AssetToImpressions",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ "CompleteAsset" ],
+        "sourceQuery" : "cts.collectionQuery([\"AssetIngest\"])",
+        "targetEntity" : "Asset",
+        "collections" : [ "AssetToImpressions", "Asset", "CompleteAsset" ],
+        "sourceDatabase" : "data-hub-STAGING",
+        "sourceCollection" : "AssetIngest",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : null,
+      "retryLimit" : null,
+      "batchSize" : null,
+      "threadCount" : null,
+      "stepDefinitionName" : "AssetToImpressions",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/AssetToImpressions/main.sjs"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "info" : {
+    "title" : "Asset",
+    "version" : "0.0.1"
+  },
+  "definitions" : {
+    "Asset" : {
+      "primaryKey" : "id",
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ "id", "keywords" ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "title" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "keywords" : {
+          "datatype" : "array",
+          "items" : {
+            "datatype" : "string",
+            "collation" : "http://marklogic.com/collation/codepoint"
+          }
+        },
+        "createdDate" : {
+          "datatype" : "dateTime"
+        },
+        "modifiedDate" : {
+          "datatype" : "dateTime"
+        },
+        "facebookCampaigns" : {
+          "datatype" : "array",
+          "items" : {
+            "datatype" : "string",
+            "collation" : "http://marklogic.com/collation/codepoint"
+          }
+        },
+        "twitterCampaigns" : {
+          "datatype" : "array",
+          "items" : {
+            "datatype" : "string",
+            "collation" : "http://marklogic.com/collation/codepoint"
+          }
+        }
+      }
+    }
+  }
+}

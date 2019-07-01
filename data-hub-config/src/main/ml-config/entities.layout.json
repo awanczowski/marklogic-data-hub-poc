@@ -1,9 +1,37 @@
 {
-  "Person" : {
-    "x" : 10,
-    "y" : 115,
+  "Asset" : {
+    "x" : 1055,
+    "y" : 241,
+    "width" : 350,
+    "height" : 210,
+    "vertices" : { }
+  },
+  "AdImpressions" : {
+    "x" : 1065,
+    "y" : 511,
     "width" : 350,
     "height" : 166,
+    "vertices" : { }
+  },
+  "FacebookCampaign" : {
+    "x" : 1062,
+    "y" : 700,
+    "width" : 350,
+    "height" : 122,
+    "vertices" : { }
+  },
+  "InstagramCampaign" : {
+    "x" : 671,
+    "y" : 707,
+    "width" : 350,
+    "height" : 122,
+    "vertices" : { }
+  },
+  "TwitterCampaign" : {
+    "x" : 1448,
+    "y" : 701,
+    "width" : 350,
+    "height" : 122,
     "vertices" : { }
   }
 }

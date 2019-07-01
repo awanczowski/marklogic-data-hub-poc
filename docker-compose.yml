@@ -33,6 +33,7 @@ services:
       - 'marklogic'
     volumes:
       - './data-hub-config:/data-hub-config'
+      - './sample-data:/sample-data'
   grove:
     build: 
       context: 'search-ui'

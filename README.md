@@ -27,6 +27,7 @@ To address the key problem set the MarkLogic Data Hub will be utilized to aggret
 * Two environmental variables will need to be set to have MarkLogic start appropriately. `ML_USER` and `ML_PASS` will be used to configure the server's admin account. The admin account will be used for configuration deployment and access to the Data Hub applciation.
 * Two entireis should be added to your opperating `hosts` file pointing to localhost. `datahub.local`, `grove.local` and `marklogic.local`. This is needed since the docker containers will commnicate accross a bridged network and reference the connection property in the gradle properties file.
 * Within the data-hub solution create a gradle properties file `data-hub-config\gradle-local.properties`. This should have a two props matching your env variables `mlUsername` and `mlPassword`. Do not commit this file. It is intened for local develoopment only.  
+* To generarte some data for the application utilize the `ad-data-generator`. The application is pre-conifgured to generate content in the sample-data directory. It can be run by executing the gradle command `gradle bootRun`
 
 ### Deployment
 

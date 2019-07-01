@@ -1,0 +1,34 @@
+{
+  "info" : {
+    "title" : "AdImpressions",
+    "version" : "0.0.1"
+  },
+  "definitions" : {
+    "AdImpressions" : {
+      "primaryKey" : "id",
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ "type", "assetId" ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "type" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "value" : {
+          "datatype" : "long",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "assetId" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        }
+      }
+    }
+  }
+}
