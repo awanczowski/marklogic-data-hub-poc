@@ -8,44 +8,44 @@ import java.util.List;
 
 /**
  * {
- *   "data": [
- *     {
- *       "name": "engagement",
- *       "period": "lifetime",
- *       "values": [
- *         {
- *           "value": 8
- *         }
- *       ],
- *       "title": "Engagement",
- *       "description": "Total number of likes and comments on the media object",
- *       "id": "media_id/insights/engagement/lifetime"
- *     },
- *     {
- *       "name": "impressions",
- *       "period": "lifetime",
- *       "values": [
- *         {
- *           "value": 13
- *         }
- *       ],
- *       "title": "Impressions",
- *       "description": "Total number of times the media object has been seen",
- *       "id": "media_id/insights/impressions/lifetime"
- *     },
- *     {
- *       "name": "reach",
- *       "period": "lifetime",
- *       "values": [
- *         {
- *           "value": 13
- *         }
- *       ],
- *       "title": "Reach",
- *       "description": "Total number of unique accounts that have seen the media object",
- *       "id": "media_id/insights/reach/lifetime"
- *     }
- *   ]
+ * "data": [
+ * {
+ * "name": "engagement",
+ * "period": "lifetime",
+ * "values": [
+ * {
+ * "value": 8
+ * }
+ * ],
+ * "title": "Engagement",
+ * "description": "Total number of likes and comments on the media object",
+ * "id": "media_id/insights/engagement/lifetime"
+ * },
+ * {
+ * "name": "impressions",
+ * "period": "lifetime",
+ * "values": [
+ * {
+ * "value": 13
+ * }
+ * ],
+ * "title": "Impressions",
+ * "description": "Total number of times the media object has been seen",
+ * "id": "media_id/insights/impressions/lifetime"
+ * },
+ * {
+ * "name": "reach",
+ * "period": "lifetime",
+ * "values": [
+ * {
+ * "value": 13
+ * }
+ * ],
+ * "title": "Reach",
+ * "description": "Total number of unique accounts that have seen the media object",
+ * "id": "media_id/insights/reach/lifetime"
+ * }
+ * ]
  * }
  */
 @Data

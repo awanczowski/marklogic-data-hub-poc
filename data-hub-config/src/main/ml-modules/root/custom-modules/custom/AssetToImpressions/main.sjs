@@ -1,6 +1,7 @@
 const DataHub = require("/data-hub/5/datahub.sjs");
 const datahub = new DataHub();
-const sem = require("/MarkLogic/semantics.xqy");
+
+const dcReferencedBy = "http://purl.org/dc/terms/isReferencedBy";
 
 function main(content, options) {
 
@@ -52,35 +53,76 @@ function main(content, options) {
   let instance = datahub.flow.flowUtils.getInstance(doc) || {};
 
   // get triples, return null if empty or cannot be found
-  let triples = [];
+  let triples = datahub.flow.flowUtils.getTriples(doc) || [];
 
   //gets headers, return null if cannot be found
-  let headers = {};
+  let headers = datahub.flow.flowUtils.getHeaders(doc) || {};
 
   //If you want to set attachments, uncomment here
   // instance['$attachments'] = doc;
 
 
   //insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
-  let analytic = {};
-  if (instance.insights.data != null && instance.insights.data.length > 0) {
-    analytic.id = instance.id;
-    analytic.type = 'Facebook';
-    analytic.value = instance.insights.data[0].impressions;
+
+  /**
+   * Facebook Relationship build.
+   */
+  for (let count = 0; count < instance.facebookCampaigns.length; count++) {
+    let campaignId = instance.facebookCampaigns[count];
+    let query = cts.andQuery([
+      cts.collectionQuery('AdImpressions'),
+      cts.jsonPropertyValueQuery('type', 'Facebook'),
+      cts.jsonPropertyValueQuery('id', campaignId)
+    ]);
+  
+    let campaignUris = cts.uris('', [], query).toArray();
+    datahub.debug.log({message: "Found " + campaignUris + ' for id ' + campaignId, type: 'error'});
+    if (campaignUris != null && campaignUris.length > 0) {
+      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(campaignUris[0])));
+    }
   }
 
-  let analyticUri = id + '/impressions.' + outputFormat;
-  let triple = sem.triple(sem.iri(analyticUri), sem.iri("http://purl.org/dc/terms/isPartOf"), sem.iri(id));
-  triples.push(triple);
+  /**
+   * Twitter Relationship build.
+   */
+  for (let count = 0; count < instance.twitterCampaigns.length; count++) {
+    let campaignId = instance.twitterCampaigns[count];
+    let query = cts.andQuery([
+      cts.collectionQuery('AdImpressions'),
+      cts.jsonPropertyValueQuery('type', 'Twitter'),
+      cts.jsonPropertyValueQuery('id', campaignId)
+    ]);
+  
+    let campaignUris = cts.uris('', [], query).toArray();
+    datahub.debug.log({message: "Found " + campaignUris + ' for id ' + campaignId, type: 'error'});
+    if (campaignUris != null && campaignUris.length > 0) {
+      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(campaignUris[0])));
+    }
+  }
 
+  /**
+   * Instagram Relationship build.
+   */
+  let query = cts.andQuery([
+    cts.collectionQuery('AdImpressions'),
+    cts.jsonPropertyValueQuery('type', 'Instagram'),
+    cts.jsonPropertyValueQuery('assetId', instance.id)
+  ]);
+
+  let campaignUris = cts.uris('', [], query).toArray();
+  datahub.debug.log({message: "Found " + campaignUris + ' for id ' + instance.id, type: 'error'});
+  if (campaignUris != null && campaignUris.length > 0) {
+    triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(campaignUris[0])));
+  }  
+  
   //form our envelope here now, specifying our output format
-  let envelope = datahub.flow.flowUtils.makeEnvelope(analytic, headers, triples, outputFormat);
+  let envelope = datahub.flow.flowUtils.makeEnvelope(instance, headers, triples, outputFormat);
 
   //assign our envelope value
   content.value = envelope;
 
   //assign the uri we want, in this case the same
-  content.uri = analyticUri;
+  content.uri = id;
 
   //assign the context we want
   content.context = context;

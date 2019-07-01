@@ -3,7 +3,7 @@
   "name" : "FacebookImpressionsMapping",
   "description" : "",
   "type" : "CUSTOM",
-  "version" : 2,
+  "version" : 5,
   "options" : {
     "additionalCollections" : [ ],
     "sourceQuery" : "cts.collectionQuery([\"FacebookAdIngest\"])",

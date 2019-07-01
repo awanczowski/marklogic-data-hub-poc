@@ -32,7 +32,7 @@
       "stepDefinitionName" : "default-ingestion",
       "stepDefinitionType" : "INGESTION",
       "fileLocations" : {
-        "inputFilePath" : "/sample-data",
+        "inputFilePath" : "/sample-data/facebook",
         "inputFileType" : "json",
         "outputURIReplacement" : "",
         "separator" : ","

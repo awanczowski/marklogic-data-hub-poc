@@ -30,6 +30,11 @@
   </search:range>
 </search:constraint> 
 -->
+  <search:constraint name="keywords">
+    <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/en">
+      <search:element ns="" name="keywords" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+  </search:constraint>
   <!--The name of this constraint is a duplicate in the generated XML. It is within a comment so that the XML may be valid, but you may need to edit for your use case.
  <search:constraint name="id" xmlns:search="http://marklogic.com/appservices/search">
   <search:value>
@@ -68,11 +73,14 @@
   </search:value>
 </search:constraint> 
 -->
-  <search:values name="Asset">
+  <search:tuples name="Asset">
     <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/codepoint">
       <search:element ns="" name="id" xmlns:es="http://marklogic.com/entity-services"/>
     </search:range>
-  </search:values>
+    <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/en">
+      <search:element ns="" name="keywords" xmlns:es="http://marklogic.com/entity-services"/>
+    </search:range>
+  </search:tuples>
   <search:tuples name="AdImpressions">
     <search:range type="xs:string" facet="true" collation="http://marklogic.com/collation/codepoint">
       <search:element ns="" name="type" xmlns:es="http://marklogic.com/entity-services"/>

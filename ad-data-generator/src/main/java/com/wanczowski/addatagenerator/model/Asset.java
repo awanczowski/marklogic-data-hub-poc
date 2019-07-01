@@ -25,10 +25,9 @@ public class Asset {
     private List<String> instagramCampaigns;
     private List<String> twitterCampaigns;
 
-    public Asset(String id, String title, String description, LocalDateTime createdDate, LocalDateTime modifiedDate, List<String> keywords) {
+    public Asset(String id, String title, LocalDateTime createdDate, LocalDateTime modifiedDate, List<String> keywords) {
         this.id = id;
         this.title = title;
-        this.description = description;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
         this.keywords = keywords;

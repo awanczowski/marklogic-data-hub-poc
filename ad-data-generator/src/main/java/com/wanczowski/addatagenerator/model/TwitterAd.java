@@ -1,31 +1,33 @@
 package com.wanczowski.addatagenerator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * {
- *   "request": {
- *     "params": {
- *       "campaign_ids": [
- *         "8fgzf"
- *       ],
- *       "start_time": "2017-05-19T00:00:00Z",
- *       "end_time": "2017-05-26T00:00:00Z",
- *       "account_id": "18ce54d4x5t"
- *     }
- *   },
- *   "data_type": "reach",
- *   "data": [
- *     {
- *       "id": "8fgzf",
- *       "total_audience_reach": 1217,
- *       "average_frequency": 1.01
- *     }
- *   ]
+ * "request": {
+ * "params": {
+ * "campaign_ids": [
+ * "8fgzf"
+ * ],
+ * "start_time": "2017-05-19T00:00:00Z",
+ * "end_time": "2017-05-26T00:00:00Z",
+ * "account_id": "18ce54d4x5t"
+ * }
+ * },
+ * "data_type": "reach",
+ * "data": [
+ * {
+ * "id": "8fgzf",
+ * "total_audience_reach": 1217,
+ * "average_frequency": 1.01
+ * }
+ * ]
  * }
  */
 @Data

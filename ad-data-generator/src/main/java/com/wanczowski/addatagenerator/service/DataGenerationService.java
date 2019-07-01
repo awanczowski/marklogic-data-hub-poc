@@ -34,14 +34,12 @@ public class DataGenerationService {
 
         for (int run = 0; run <= this.runs; run++) {
             List<String> keywords = getKeywords();
-            Asset  asset = new Asset(
-                        UUID.randomUUID().toString(),
-                        String.join(" ", keywords),
-                        null,
-                        LocalDateTime.now(),
-                        LocalDateTime.now(),
-                        keywords);
-            
+            Asset asset = new Asset(
+                    UUID.randomUUID().toString(),
+                    String.join(" ", keywords) + " Product Campaign",
+                    LocalDateTime.now(),
+                    LocalDateTime.now(),
+                    keywords);
 
             TwitterAd twitterAd = this.generateTwitterAd();
             this.twitterAds.add(twitterAd);

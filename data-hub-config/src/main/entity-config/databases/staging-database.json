@@ -24,6 +24,13 @@
     "namespace-uri" : null,
     "range-value-positions" : false,
     "scalar-type" : "string"
+  }, {
+    "collation" : "http://marklogic.com/collation/en",
+    "invalid-values" : "reject",
+    "localname" : "keywords",
+    "namespace-uri" : null,
+    "range-value-positions" : false,
+    "scalar-type" : "string"
   } ],
   "database-name" : "%%mlStagingDbName%%"
 }

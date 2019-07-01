@@ -8,7 +8,7 @@
       "primaryKey" : "id",
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ "id" ],
+      "elementRangeIndex" : [ "id", "keywords" ],
       "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {
@@ -32,6 +32,20 @@
         },
         "modifiedDate" : {
           "datatype" : "dateTime"
+        },
+        "facebookCampaigns" : {
+          "datatype" : "array",
+          "items" : {
+            "datatype" : "string",
+            "collation" : "http://marklogic.com/collation/codepoint"
+          }
+        },
+        "twitterCampaigns" : {
+          "datatype" : "array",
+          "items" : {
+            "datatype" : "string",
+            "collation" : "http://marklogic.com/collation/codepoint"
+          }
         }
       }
     }

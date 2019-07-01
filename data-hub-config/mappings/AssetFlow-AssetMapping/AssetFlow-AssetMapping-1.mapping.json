@@ -1,0 +1,10 @@
+{
+  "language" : "zxx",
+  "name" : "AssetFlow-AssetMapping",
+  "description" : "",
+  "version" : 1,
+  "targetEntityType" : "Asset-0.0.1/Asset",
+  "sourceContext" : "//",
+  "sourceURI" : "",
+  "properties" : { }
+}

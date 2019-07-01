@@ -6,28 +6,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
  * {
- *   "id": "6042542123268",
- *   "name": "My Website Clicks Ad",
- *   "insights": {
- *     "data": [
- *       {
- *         "impressions": "9708",
- *         "date_start": "2016-03-06",
- *         "date_stop": "2016-04-01"
- *       }
- *     ],
- *     "paging": {
- *       "cursors": {
- *         "before": "MAZDZD",
- *         "after": "MAZDZD"
- *       }
- *     }
- *   }
+ * "id": "6042542123268",
+ * "name": "My Website Clicks Ad",
+ * "insights": {
+ * "data": [
+ * {
+ * "impressions": "9708",
+ * "date_start": "2016-03-06",
+ * "date_stop": "2016-04-01"
+ * }
+ * ],
+ * "paging": {
+ * "cursors": {
+ * "before": "MAZDZD",
+ * "after": "MAZDZD"
+ * }
+ * }
+ * }
  * }
  */
 @Data

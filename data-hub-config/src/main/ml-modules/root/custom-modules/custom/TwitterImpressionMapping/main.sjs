@@ -69,6 +69,10 @@ function main(content, options) {
     analytic.value = data.total_audience_reach;
   }
 
+  let analyticUri = id + '/impressions.' + outputFormat;
+  let triple = sem.triple(sem.iri(analyticUri), sem.iri("http://purl.org/dc/terms/isPartOf"), sem.iri(id));
+  triples.push(triple);
+
   //form our envelope here now, specifying our output format
   let envelope = datahub.flow.flowUtils.makeEnvelope(analytic, headers, triples, outputFormat);
 
@@ -76,7 +80,7 @@ function main(content, options) {
   content.value = envelope;
 
   //assign the uri we want, in this case the same
-  content.uri = id + "/impressions." + outputFormat;
+  content.uri = analyticUri;
 
   //assign the context we want
   content.context = context;

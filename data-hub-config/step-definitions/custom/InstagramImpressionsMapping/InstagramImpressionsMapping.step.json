@@ -3,7 +3,7 @@
   "name" : "InstagramImpressionsMapping",
   "description" : "",
   "type" : "CUSTOM",
-  "version" : 1,
+  "version" : 3,
   "options" : {
     "additionalCollections" : [ ],
     "sourceQuery" : "cts.collectionQuery([\"InstagramAdIngestion\"])",
