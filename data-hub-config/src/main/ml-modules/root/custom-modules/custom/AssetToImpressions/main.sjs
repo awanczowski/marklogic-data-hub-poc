@@ -1,20 +1,19 @@
 const DataHub = require("/data-hub/5/datahub.sjs");
 const datahub = new DataHub();
-
 const dcReferencedBy = "http://purl.org/dc/terms/isReferencedBy";
 
 function main(content, options) {
 
-  //grab the doc id/uri
+  // Get the document's ID/URI.
   let id = content.uri;
 
-  //here we can grab and manipulate the context metadata attached to the document
+  // Get and manipulate the context metadata associated with the document.
   let context = content.context;
 
-  //let's set our output format, so we know what we're exporting
+  // Set the format of the output.
   let outputFormat = options.outputFormat ? options.outputFormat.toLowerCase() : datahub.flow.consts.DEFAULT_FORMAT;
 
-  //here we check to make sure we're not trying to push out a binary or text document, just xml or json
+  // Verify that the output is in either XML or JSON format, not in binary or other text format.
   if (outputFormat !== datahub.flow.consts.JSON && outputFormat !== datahub.flow.consts.XML) {
     datahub.debug.log({
       message: 'The output format of type ' + outputFormat + ' is invalid. Valid options are ' + datahub.flow.consts.XML + ' or ' + datahub.flow.consts.JSON + '.',
@@ -24,46 +23,56 @@ function main(content, options) {
   }
 
   /*
-  This scaffolding assumes we obtained the document from the database. If you are inserting information, you will
-  have to map data from the content.value appropriately and create an instance (object), headers (object), and triples
-  (array) instead of using the flowUtils functions to grab them from a document that was pulled from MarkLogic.
-  Also you do not have to check if the document exists as in the code below.
+  This scaffolding assumes that the document is retrieved from the source database.
 
-  Example code for using data that was sent to MarkLogic server for the document
+  If you are adding information to (instead of modifying values in) an existing record in the database,
+  you can create an instance (object), headers (object), and triples (array) using data from content.value,
+  instead of calling the flowUtils functions to extract information from the document retrieved from MarkLogic Server.
+  In addition, you do not have to verify that the document exists.
+
+  Example code for using data that is sent to MarkLogic Server for the document
   let instance = content.value;
   let triples = [];
   let headers = {};
-   */
+  */
 
-  //Here we check to make sure it's still there before operating on it
+  // Verify that the record is still in the database before processing it. Not required when creating new records.
+  // 'fn' is a MarkLogic Server function.
   if (!fn.docAvailable(id)) {
     datahub.debug.log({message: 'The document with the uri: ' + id + ' could not be found.', type: 'error'});
     throw Error('The document with the uri: ' + id + ' could not be found.')
   }
 
-  //grab the 'doc' from the content value space
+  // Set the 'doc' variable to the value of 'content.value'.
   let doc = content.value;
 
-  // let's just grab the root of the document if its a Document and not a type of Node (ObjectNode or XMLNode)
+  // If the document is an instance of Document or XMLDocument (i.e., not a type of Node, such as ObjectNode or XMLNode).
   if (doc && (doc instanceof Document || doc instanceof XMLDocument)) {
     doc = fn.head(doc.root);
   }
 
-  //get our instance, default shape of envelope is envelope/instance, else it'll return an empty object/array
-  let instance = datahub.flow.flowUtils.getInstance(doc) || {};
+  // Get the instance. If the instance is not found, getInstance() returns an empty object.
+  // If the document is inside an envelope, the default format is envelope/instance.
+  // If you have a custom format, get the instance using: doc.xpath('/xpath/here')
+  let instance = datahub.flow.flowUtils.getInstance(doc).toObject() || {};
 
-  // get triples, return null if empty or cannot be found
+  // Get the triples. Return null, if empty or not found.
   let triples = datahub.flow.flowUtils.getTriples(doc) || [];
 
-  //gets headers, return null if cannot be found
+  // Get the headers. Return null, if not found.
   let headers = datahub.flow.flowUtils.getHeaders(doc) || {};
 
-  //If you want to set attachments, uncomment here
-  // instance['$attachments'] = doc;
+  // To set attachments, use this instead: instance['$attachments'] = doc;
+  instance['$attachments'] = {
+    envelope: {
+      headers: datahub.flow.flowUtils.getHeaders(doc) || {},
+      triples: datahub.flow.flowUtils.getTriples(doc) || [],
+      instance: datahub.flow.flowUtils.getInstance(doc)
+    }
+  };
 
-
-  //insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
-
+  // Insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
+  
   /**
    * Facebook Relationship build.
    */
@@ -75,15 +84,23 @@ function main(content, options) {
       cts.jsonPropertyValueQuery('id', campaignId)
     ]);
   
-    let campaignUris = cts.uris('', [], query).toArray();
-    datahub.debug.log({message: "Found " + campaignUris + ' for id ' + campaignId, type: 'error'});
-    if (campaignUris != null && campaignUris.length > 0) {
-      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(campaignUris[0])));
+    let results = cts.search(query).toArray();
+    if (results != null && results.length > 0) {
+      let result = results[0];
+      let uri = fn.baseUri(result);
+      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
+
+      let analytic = result.root.envelope.instance;
+      if (analytic != null) {
+        instance.analytics = instance.analytics || {};
+        instance.analytics['facebook'] = instance.analytics.facebook || {};
+        instance.analytics.facebook[analytic.id] = analytic;
+      }
     }
   }
 
   /**
-   * Twitter Relationship build.
+   * Twitter Analytic
    */
   for (let count = 0; count < instance.twitterCampaigns.length; count++) {
     let campaignId = instance.twitterCampaigns[count];
@@ -93,15 +110,23 @@ function main(content, options) {
       cts.jsonPropertyValueQuery('id', campaignId)
     ]);
   
-    let campaignUris = cts.uris('', [], query).toArray();
-    datahub.debug.log({message: "Found " + campaignUris + ' for id ' + campaignId, type: 'error'});
-    if (campaignUris != null && campaignUris.length > 0) {
-      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(campaignUris[0])));
+    let results = cts.search(query).toArray();
+    if (results != null && results.length > 0) {
+      let result = results[0];
+      let uri = fn.baseUri(result);
+      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
+
+      let analytic = result.root.envelope.instance;
+      if (analytic != null) {
+        instance.analytics = instance.analytics || {};
+        instance.analytics['twitter'] = instance.analytics.twitter || {};
+        instance.analytics.twitter[analytic.id] = analytic;
+      }
     }
   }
-
+  
   /**
-   * Instagram Relationship build.
+   * Instagram Analytic
    */
   let query = cts.andQuery([
     cts.collectionQuery('AdImpressions'),
@@ -109,25 +134,31 @@ function main(content, options) {
     cts.jsonPropertyValueQuery('assetId', instance.id)
   ]);
 
-  let campaignUris = cts.uris('', [], query).toArray();
-  datahub.debug.log({message: "Found " + campaignUris + ' for id ' + instance.id, type: 'error'});
-  if (campaignUris != null && campaignUris.length > 0) {
-    triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(campaignUris[0])));
-  }  
-  
-  //form our envelope here now, specifying our output format
-  let envelope = datahub.flow.flowUtils.makeEnvelope(instance, headers, triples, outputFormat);
+  let results = cts.search(query).toArray();
+  if (results != null && results.length > 0) {
+    let result = results[0];
+    let uri = fn.baseUri(result);
+    triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
 
-  //assign our envelope value
+    let analytic = result.root.envelope.instance;
+    if (analytic != null) {
+      instance.analytics = instance.analytics || {};
+      instance.analytics['instagram'] = instance.analytics.instagram || {};
+      instance.analytics.instagram[analytic.id] = analytic;
+    }
+  }
+
+  // Create the envelope using the specified output format, and set the content.value to the envelope.
+  let envelope = datahub.flow.flowUtils.makeEnvelope(instance, headers, triples, outputFormat);
   content.value = envelope;
 
-  //assign the uri we want, in this case the same
+  // Assign the URI. In this example, the URI is the same.
   content.uri = id;
 
-  //assign the context we want
+  // Assign the context.
   content.context = context;
 
-  //now let's return out our content to be written
+  // Return the content to be written.
   return content;
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import queryString from 'query-string';
+import AssetDetailTemplate from './AssetDetailTemplate';
+import AssetSearchResult from './AssetSearchResult';
 
 import {
   SearchContainer,
@@ -58,7 +60,7 @@ const Routes = ({ isAuthenticated }, ...rest) => {
         isAuthenticated={isAuthenticated}
         exact
         path="/"
-        render={() => <SearchContainer />}
+        render={() => <SearchContainer resultComponent={AssetSearchResult} />}
       />
       <PrivateRoute
         isAuthenticated={isAuthenticated}
@@ -69,7 +71,7 @@ const Routes = ({ isAuthenticated }, ...rest) => {
           const id =
             (props.location.state && props.location.state.id) ||
             queryString.parse(props.location.search).id;
-          return <DetailContainer id={id} />;
+          return <DetailContainer template={AssetDetailTemplate} id={id} />;
         }}
       />
       <PrivateRoute

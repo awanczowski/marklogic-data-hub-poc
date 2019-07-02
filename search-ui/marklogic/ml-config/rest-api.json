@@ -2,7 +2,7 @@
   "rest-api": {
     "name": "%%mlAppName%%",
     "group": "%%mlGroup%%",
-    "database": "data-hub-FINAL",
+    "database": "data-hub-STAGING",
     "modules-database": "%%mlAppName%%-modules",
     "port": "%%mlRestPort%%",
     "xdbc-enabled": true,
