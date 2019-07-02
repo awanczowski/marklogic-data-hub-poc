@@ -68,7 +68,7 @@ function main(content, options) {
       if ('impressions' == data.name) {
         analytic.id = data.id;
         analytic.assetId = fn.tokenize(data.id, '/').toArray()[0];
-        analytic.impressions = data.values[0].value;
+        analytic.value = data.values[0].value;
         analytic.type = 'Instagram';
         break;
       }

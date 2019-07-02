@@ -1,13 +1,14 @@
 # MarkLogic Data Hub Proof-of-Concept
 
-Domain Problem: It is difficult to gauge performance analytics on indvidual assets that go into a markiting campaign.
+Domain Problem: It is difficult to gauge performance analytics, holistically across platforms, on assets that go into a markiting campaign.
 
 ## Success Criteria
 
-* Index metadata regarding indvidual creative assets
-* Relate the assets to the composition that is used for markiting collatoral
+* Index metadata regarding creative assets
 * Index performance analytics from social networks (i.e. Facebook, Twitter, Instagram) regarding the campaign
-* Show all campaigns asset appeard in with the aggregate counts of analytics
+* Relate the assets to the analytics that are gathered from the various social networks
+* Denormalize asset and campaign data into a single aggregated document.
+* Show all aggregate counts on a given asset for the campaign.
 
 ## Solution
 

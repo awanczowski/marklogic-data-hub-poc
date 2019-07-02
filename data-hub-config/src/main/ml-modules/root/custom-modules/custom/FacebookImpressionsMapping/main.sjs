@@ -66,7 +66,11 @@ function main(content, options) {
   if (instance.insights.data != null && instance.insights.data.length > 0) {
     analytic.id = instance.id;
     analytic.type = 'Facebook';
-    analytic.value = instance.insights.data[0].impressions;
+
+    let impressions = instance.insights.data[0].impressions; 
+    if (impressions != null) {
+      analytic.value = xs.long(impressions);
+    }
   }
 
   let analyticUri = id + '/impressions.' + outputFormat;

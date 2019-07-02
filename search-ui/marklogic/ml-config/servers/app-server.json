@@ -4,7 +4,7 @@
   "server-type": "http",
   "root": "/",
   "port": "%%mlRestPort%%",
-  "content-database": "data-hub-FINAL",
+  "content-database": "data-hub-STAGING",
   "modules-database": "%%mlAppName%%-modules",
 
   "authentication": "digest",
