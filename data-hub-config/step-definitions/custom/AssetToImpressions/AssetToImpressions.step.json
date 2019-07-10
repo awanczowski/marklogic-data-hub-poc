@@ -1,0 +1,22 @@
+{
+  "language" : "zxx",
+  "name" : "AssetToImpressions",
+  "description" : "",
+  "type" : "CUSTOM",
+  "version" : 9,
+  "options" : {
+    "additionalCollections" : [ "CompleteAsset" ],
+    "sourceQuery" : "cts.collectionQuery([\"AssetIngest\"])",
+    "targetEntity" : "Asset",
+    "collections" : [ "AssetToImpressions", "Asset", "CompleteAsset" ],
+    "sourceDatabase" : "data-hub-STAGING",
+    "sourceCollection" : "AssetIngest",
+    "outputFormat" : "json",
+    "targetDatabase" : "data-hub-STAGING"
+  },
+  "customHook" : { },
+  "modulePath" : "/custom-modules/custom/AssetToImpressions/main.sjs",
+  "retryLimit" : 0,
+  "batchSize" : 100,
+  "threadCount" : 4
+}

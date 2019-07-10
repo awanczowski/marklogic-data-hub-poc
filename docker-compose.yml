@@ -1,0 +1,57 @@
+version: '3'
+services:
+  marklogic:
+    build: 
+      context: 'marklogic'
+    image: 'marklogic9:latest'
+    ports:
+      - '7997:7997'
+      - '8000-8002:8000-8002'
+      - '8010-8011:8010-8011'
+      - '8013:8013'
+      - '8063:8063'
+    hostname: 'marklogic.local'
+    container_name: 'marklogic.local'
+    environment:
+      USER: ${ML_USER}
+      PASS: ${ML_PASS}
+    networks:
+      - 'marklogic'
+    volumes:
+      - 'marklogic:/var/opt/MarkLogic'
+  datahub:  
+    build: 
+      context: 'data-hub-quick-start'
+    depends_on: 
+      - 'marklogic'
+    image: 'data-hub-quick-start:latest'
+    ports:
+      - '8080:8080'
+    hostname: 'datahub.local'
+    container_name: 'datahub.local'
+    networks:
+      - 'marklogic'
+    volumes:
+      - './data-hub-config:/data-hub-config'
+      - './sample-data:/sample-data'
+  grove:
+    build: 
+      context: 'search-ui'
+    depends_on:     
+      - marklogic
+    image: 'grove:latest'
+    ports:
+      - '3000:3000'
+      - '9003:9003'
+    hostname: 'grove.local'
+    container_name: 'grove.local'  
+    environment:
+      GROVE_ML_HOST: 'marklogic.local'
+      GROVE_UI_BUILD_PATH: '../ui/build'
+    networks:
+      - 'marklogic'
+networks:
+  marklogic:
+    driver: 'bridge'
+volumes:
+  marklogic:

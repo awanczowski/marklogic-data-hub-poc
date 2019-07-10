@@ -1,0 +1,63 @@
+{
+  "name" : "InstagramFlow",
+  "description" : "",
+  "batchSize" : 100,
+  "threadCount" : 4,
+  "stopOnError" : false,
+  "options" : { },
+  "version" : 0,
+  "steps" : {
+    "1" : {
+      "name" : "InstagramAdIngestion",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "headers" : {
+          "sources" : [ {
+            "name" : "InstagramFlow"
+          } ],
+          "createdOn" : "currentDateTime",
+          "createdBy" : "currentUser"
+        },
+        "sourceQuery" : "cts.collectionQuery([])",
+        "collections" : [ "InstagramAdIngestion" ],
+        "permissions" : "rest-reader,read,rest-writer,update",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : { },
+      "retryLimit" : 0,
+      "batchSize" : 0,
+      "threadCount" : 0,
+      "stepDefinitionName" : "default-ingestion",
+      "stepDefinitionType" : "INGESTION",
+      "fileLocations" : {
+        "inputFilePath" : "/sample-data/instagram",
+        "inputFileType" : "json",
+        "outputURIReplacement" : "",
+        "separator" : ","
+      }
+    },
+    "2" : {
+      "name" : "InstagramImpressionsMapping",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"InstagramAdIngestion\"])",
+        "targetEntity" : "AdImpressions",
+        "collections" : [ "InstagramImpressionsMapping", "AdImpressions" ],
+        "sourceDatabase" : "data-hub-STAGING",
+        "sourceCollection" : "InstagramAdIngestion",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : null,
+      "retryLimit" : null,
+      "batchSize" : null,
+      "threadCount" : null,
+      "stepDefinitionName" : "InstagramImpressionsMapping",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/InstagramImpressionsMapping/main.sjs"
+    }
+  }
+}

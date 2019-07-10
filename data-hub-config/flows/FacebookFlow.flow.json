@@ -1,0 +1,63 @@
+{
+  "name" : "FacebookFlow",
+  "description" : "",
+  "batchSize" : 100,
+  "threadCount" : 4,
+  "stopOnError" : false,
+  "options" : { },
+  "version" : 0,
+  "steps" : {
+    "1" : {
+      "name" : "FacebookAdIngest",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "headers" : {
+          "sources" : [ {
+            "name" : "FacebookFlow"
+          } ],
+          "createdOn" : "currentDateTime",
+          "createdBy" : "currentUser"
+        },
+        "sourceQuery" : "cts.collectionQuery([])",
+        "collections" : [ "FacebookAdIngest" ],
+        "permissions" : "rest-reader,read,rest-writer,update",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : { },
+      "retryLimit" : 0,
+      "batchSize" : 0,
+      "threadCount" : 0,
+      "stepDefinitionName" : "default-ingestion",
+      "stepDefinitionType" : "INGESTION",
+      "fileLocations" : {
+        "inputFilePath" : "/sample-data/facebook",
+        "inputFileType" : "json",
+        "outputURIReplacement" : "",
+        "separator" : ","
+      }
+    },
+    "2" : {
+      "name" : "FacebookImpressionsMapping",
+      "description" : "",
+      "options" : {
+        "additionalCollections" : [ ],
+        "sourceQuery" : "cts.collectionQuery([\"FacebookAdIngest\"])",
+        "targetEntity" : "AdImpressions",
+        "collections" : [ "FacebookImpressionsMapping", "AdImpressions" ],
+        "sourceDatabase" : "data-hub-STAGING",
+        "sourceCollection" : "FacebookAdIngest",
+        "outputFormat" : "json",
+        "targetDatabase" : "data-hub-STAGING"
+      },
+      "customHook" : null,
+      "retryLimit" : null,
+      "batchSize" : null,
+      "threadCount" : null,
+      "stepDefinitionName" : "FacebookImpressionsMapping",
+      "stepDefinitionType" : "CUSTOM",
+      "modulePath" : "/custom-modules/custom/FacebookImpressionsMapping/main.sjs"
+    }
+  }
+}
