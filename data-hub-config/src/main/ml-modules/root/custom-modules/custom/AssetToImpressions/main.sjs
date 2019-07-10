@@ -74,59 +74,61 @@ function main(content, options) {
   // Insert code to manipulate the instance, triples, headers, uri, context metadata, etc.
   
   /**
-   * Facebook Relationship build.
+   * Facebook relationship building and denormalization by executing a search, relating document URIs and embedding Ad metadata within the asset.
    */
-  for (let count = 0; count < instance.facebookCampaigns.length; count++) {
-    let campaignId = instance.facebookCampaigns[count];
-    let query = cts.andQuery([
-      cts.collectionQuery('AdImpressions'),
-      cts.jsonPropertyValueQuery('type', 'Facebook'),
-      cts.jsonPropertyValueQuery('id', campaignId)
-    ]);
-  
-    let results = cts.search(query).toArray();
-    if (results != null && results.length > 0) {
-      let result = results[0];
-      let uri = fn.baseUri(result);
-      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
+  if (instance.facebookCampaigns != null) {
+    for (let count = 0; count < instance.facebookCampaigns.length; count++) {
+      let campaignId = instance.facebookCampaigns[count];
+      let query = cts.andQuery([
+        cts.collectionQuery('AdImpressions'),
+        cts.jsonPropertyValueQuery('type', 'Facebook'),
+        cts.jsonPropertyValueQuery('id', campaignId)
+      ]);
+    
+      let results = cts.search(query).toArray();
+      if (results != null && results.length > 0) {
+        let result = results[0];
+        let uri = fn.baseUri(result);
+        triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
 
-      let analytic = result.root.envelope.instance;
-      if (analytic != null) {
-        instance.analytics = instance.analytics || {};
-        instance.analytics['facebook'] = instance.analytics.facebook || {};
-        instance.analytics.facebook[analytic.id] = analytic;
+        let analytic = result.root.envelope.instance;
+        if (analytic != null) {
+          instance.analytics = instance.analytics || {};
+          instance.analytics['facebook'] = instance.analytics.facebook || {};
+          instance.analytics.facebook[analytic.id] = analytic;
+        }
       }
     }
   }
-
   /**
-   * Twitter Analytic
+   * Twitter relationship building and denormalization by executing a search, relating document URIs and embedding Ad metadata within the asset.
    */
-  for (let count = 0; count < instance.twitterCampaigns.length; count++) {
-    let campaignId = instance.twitterCampaigns[count];
-    let query = cts.andQuery([
-      cts.collectionQuery('AdImpressions'),
-      cts.jsonPropertyValueQuery('type', 'Twitter'),
-      cts.jsonPropertyValueQuery('id', campaignId)
-    ]);
-  
-    let results = cts.search(query).toArray();
-    if (results != null && results.length > 0) {
-      let result = results[0];
-      let uri = fn.baseUri(result);
-      triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
+  if (instance.twitterCampaigns != null) {
+    for (let count = 0; count < instance.twitterCampaigns.length; count++) {
+      let campaignId = instance.twitterCampaigns[count];
+      let query = cts.andQuery([
+        cts.collectionQuery('AdImpressions'),
+        cts.jsonPropertyValueQuery('type', 'Twitter'),
+        cts.jsonPropertyValueQuery('id', campaignId)
+      ]);
+    
+      let results = cts.search(query).toArray();
+      if (results != null && results.length > 0) {
+        let result = results[0];
+        let uri = fn.baseUri(result);
+        triples.push(sem.triple(sem.iri(id), sem.iri(dcReferencedBy), sem.iri(uri)));
 
-      let analytic = result.root.envelope.instance;
-      if (analytic != null) {
-        instance.analytics = instance.analytics || {};
-        instance.analytics['twitter'] = instance.analytics.twitter || {};
-        instance.analytics.twitter[analytic.id] = analytic;
+        let analytic = result.root.envelope.instance;
+        if (analytic != null) {
+          instance.analytics = instance.analytics || {};
+          instance.analytics['twitter'] = instance.analytics.twitter || {};
+          instance.analytics.twitter[analytic.id] = analytic;
+        }
       }
     }
-  }
-  
+  } 
   /**
-   * Instagram Analytic
+   * Instagram relationship building and denormalization by executing a search, relating document URIs and embedding Ad metadata within the asset.
    */
   let query = cts.andQuery([
     cts.collectionQuery('AdImpressions'),

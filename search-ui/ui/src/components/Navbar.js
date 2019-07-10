@@ -11,9 +11,6 @@ const Navbar = props => (
       <LinkContainer exact to="/">
         <NavItem>Search</NavItem>
       </LinkContainer>
-      <LinkContainer exact to="/create">
-        <NavItem>Create</NavItem>
-      </LinkContainer>
     </Nav>
   </MLNavbar>
 );
