@@ -6,11 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum GarmentTaxonomy {
-    SHIRT("Shirt"),
-    SWEATER("Sweater"),
-    PANTS("Pants"),
-    JEANS("Jeans"),
-    JACKET("Jacket");
+  SHIRT("Shirt"),
+  SWEATER("Sweater"),
+  PANTS("Pants"),
+  JEANS("Jeans"),
+  JACKET("Jacket");
 
-    private String label;
+  private String label;
 }
